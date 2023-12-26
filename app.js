@@ -39,7 +39,6 @@ function next() {
   showCard(currentIndex);
   }
 }
-console.log(arr)
 
 
 
@@ -48,7 +47,6 @@ for (let i = 0; i <= 29; i++) {
   if (products[i]["discountPercentage"] >= 15.0 && products[i]["thumbnail"] && m==0){
   let tr=0
     for(let x in arr){
-      console.log(x)
       if(arr[x]==products[i]["id"]){
         tr=1
         break;
@@ -124,7 +122,6 @@ for (let i = 0; i <= 29; i++) {
   else if(m>0){
     let tr=0
     for(let x in arr){
-      console.log(x)
       if(arr[x]==products[i]["id"]){
         tr=1
         break;
@@ -208,3 +205,4 @@ for (let i = 0; i <= 29; i++) {
 }
 }
 }
+

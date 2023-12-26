@@ -3,6 +3,10 @@
     padding: 0;
     font-family: "poppins";
     box-sizing: border-box;
+    text-decoration: none;
+}
+a{
+    color: black;
 }
 body {
     overflow-x: hidden;
@@ -17,6 +21,7 @@ body {
     color: white;
     justify-content: center;
     align-items: center;
+    z-index: 0;
 }
 .hline{
     border-top: 2px solid rgb(202, 199, 199);
@@ -44,7 +49,7 @@ body {
     gap: 48px;
 }
 .search{
-    margin-left: 280px;
+    margin-left: 200px;
     display: flex;
     align-items: center;
 }
@@ -62,6 +67,9 @@ body {
     border: none;
     box-sizing: border-box;
 }
+#searchr:focus{
+    outline: none;
+}
 #searchi{
     margin-top: 10px;
     margin-right: 10px;
@@ -70,16 +78,26 @@ body {
 .carticon{
     margin-left: 24px;
     display: flex;
-    gap: 16px;
+    gap: 35px;
     font-size: x-large;
+}
+#user:hover{
+    color: #DB4444;
 }
 #likei{
     height: 32px;
     width: 32px;
+    font-size: larger;
 }
 #carti{
     height: 32px;
     width: 32px;
+    font-size: larger;
+}
+#user{
+    height: 32px;
+    width: 32px;
+    font-size: larger;
 }
 .line2{
     display: flex;
@@ -319,3 +337,88 @@ body {
     flex-direction: column;
     gap: 16px;
 }
+
+
+/* sign up page */
+
+.signupbox{
+    display: flex;
+    gap: 129px;
+    align-items: center;
+}
+
+.sideimage{
+    margin-top: 50px;
+    width: 805px;
+    height: 781px;
+}
+#mainhead{
+    font-size: 36px;
+    font-weight: 500;
+}
+.footers{
+width: 100vw;
+display: flex;
+padding-top: 100px;
+box-sizing: border-box;
+height: 48px;
+background-color: black;
+color: white;
+justify-content: center;
+align-items: flex-start;
+margin-top: 100px;
+height: 440px;
+gap: 87px;
+}
+
+.details{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.detail{
+    border: none;
+    border-bottom: 1px solid rgb(202, 199, 199) ;
+    font-size: 24px;
+    padding-left: 5px;
+}
+
+.detail:focus{
+    outline: none;
+    border: none;
+    border-bottom: 2px solid rgb(202, 199, 199) ;
+    font-size: 24px;
+    padding-left: 5px;
+}
+#create{
+    width: 100%;
+    height: 56px;
+    background-color: #DB4444 ;
+    border: none;
+    color: white;
+    border-radius: 2px;
+    font-size: 16px;
+}
+.already{
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+}
+#login{
+    width: 25%;
+    height: 56px;
+    background-color: #DB4444 ;
+    border: none;
+    color: white;
+    border-radius: 2px;
+    font-size: 16px;
+}
+.already2{
+    display: flex;
+    gap: 40px;
+
+}
+
