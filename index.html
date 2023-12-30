@@ -14,22 +14,24 @@
     />
   </head>
   <body>
+    <div class="homepage">
+    <nav class="navigationbar">
     <div class="summersale">
       <p id="off">
         Summer Sale For All Swim Suits and Free Express Delivery - OFF 50%
-        <b><u> Shop Now</u></b>
+        <a style="color: white;"  href="allproducts.html"><b><u> Shop Now</u></b></a>
       </p>
     </div>
     <div class="navbar">
-      <a href="index.html"><h1>Exclusive</h1></a>
+      <a class="navcon" href="index.html"><h1>Exclusive</h1></a>
       <div class="navcontent">
         <div class="navcontent2">
-          <a href="index.html"><h4>Home</h4></a>
-          <a><h4>Contact</h4></a>
-          <a><h4>About</h4></a>
-          <a href="signup.html"><h4>Sign Up</h4></a>
+          <a class="navcon" href="index.html"><h4>Home</h4></a>
+          <a class="navcon" href="contact.html"><h4>Contact</h4></a>
+          <a class="navcon"><h4>About</h4></a>
+          <a class="navcon" href="signup.html"><h4>Sign Up</h4></a>
         </div>
-      </div>
+        </div>
       <div class="search">
         <div class="searchcontent">
           <input
@@ -40,29 +42,31 @@
           <i id="searchi" class="fa-solid fa-magnifying-glass"></i>
         </div>
         <div class="carticon">
-          <i id="likei" class="fa-regular fa-heart"></i>
-          <i id="carti" class="fa-solid fa-cart-shopping"></i>
+          <a href="wishlist.html" style="color: black;"><i id="likei" class="fa-regular fa-heart"></i></a>
+          <a href="cart.html" style="color: black;"><i id="carti" class="fa-solid fa-cart-shopping"></i></a>
         </div>
       </div>
     </div>
     <div class="hline"></div>
+  </nav>
     <div class="line2">
       <div class="categories">
-        <p>Woman's Fashion</p>
-        <p>Men's Fashion</p>
-        <p>Electronics</p>
-        <p>Home & Lifestyle</p>
-        <p>Medicine</p>
-        <p>Sports & Outdoor</p>
-        <p>Baby's & Toys</p>
-        <p>Groceries & Pets</p>
-        <p>Health & Beauty</p>
+        <a style="color: black;" href="/Category/womenfash.html"><p>Woman's Fashion</p></a>
+        <a style="color: black;" href="/Category/menfas.html"><p>Men's Fashion</p></a>
+        <a style="color: black;"href="/Category/electronics.html"><p>Electronics</p></a>
+        <a style="color: black;" href="/Category/home.html"><p>Home & Lifestyle</p></a>
+        <a style="color: black;" href="/Category/medicine.html"><p>Medicine</p></a>
+        <a style="color: black;"href="/Category/sports.html"><p>Sports & Outdoor</p></a>
+        <a style="color: black;"href="/Category/toys.html"><p>Baby's & Toys</p></a>
+        <a style="color: black;"href="/Category/grocries.html"><p>Groceries & Pets</p></a>
+        <a style="color: black;"href="/Category/health.html"><p>Health & Beauty</p></a>
       </div>
       <div class="vline">
         <img id="p1" src="./images/1.jpg" />
       </div>
     </div>
     <div class="box2">
+      <div class="newdiv">
       <div class="boxi">
         <div class="today">
           <div class="redbox"></div>
@@ -70,13 +74,66 @@
         </div>
         <p id="flash">Flash Sales</p>
       </div>
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper"></div>
+      <div class="timer">
+        <div class="days">
+          <p>Days</p>
+          <p class="time" id="day"></p>
+        </div>
+        <p id="semi">:</p>
+        <div class="hours">
+          <p>Hours</p>
+          <p class="time" id="hrs"></p>
+        </div>
+        <p id="semi">:</p>
+        <div class="minutes">
+          <p>Minutes</p>
+          <p class="time" id="min"></p>
+        </div>
+        <p id="semi">:</p>
+        <div class="seconds">
+          <p>Seconds</p>
+          <p class="time" id="sec"></p>
+        </div>
+      </div>
+    </div>
+<script>
+  function padstart(x,y){
+    if(x<10){
+    add=y+x
+    return add
+  }
+  else{
+    return x
+  }
+  }
+var countDownDate = new Date("01-10-2024 15:37:25").getTime();
+var x = setInterval(function() {
+  var now = new Date().getTime();
+
+  var distance = countDownDate - now;
+
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  days=padstart(days,"0")
+  hours=padstart(hours,"0")
+  minutes=padstart(minutes,"0")
+  seconds=padstart(seconds,"0")
+
+
+  document.getElementById("day").innerHTML = days
+  document.getElementById("hrs").innerHTML = hours
+  document.getElementById("min").innerHTML = minutes
+  document.getElementById("sec").innerHTML = seconds
+
+}, 1000);
+</script>
+      
+      <div class="swiper">
       </div>
       <div class="buttons">
-        <button id="prev" onclick="prev()">Prev</button>
-        <button id="viewall" onclick="viewall()">View All products</button>
-        <button id="next" onclick="next()">Next</button>
+        <button id="viewallonly" onclick="viewall()">View All products</button>
       </div>
     </div>
     <div class="hline2"></div>
@@ -90,36 +147,36 @@
         </div>
        <div class="cate">
         <div class="catebox">
-            <div class="catech">
+            <div onclick="category(smartphones)" class="catech">
                 <i id="ic" class="fa-solid fa-mobile"></i>
                 <p>Phone</p>
             </div>
         </div>
-        <div class="catebox">
+        <div onclick="category(laptops)" class="catebox">
             <div class="catech">
                 <i id="ic"class="fa-solid fa-computer"></i>
                 <p>Laptop</p>
             </div>
         </div>
         <div class="catebox">
-            <div class="catech">
+            <div onclick="category(menswatches)" class="catech">
                 <i id="ic" class="fa-regular fa-clock"></i>
                 <p>Watch</p>
             </div>
         </div>
-        <div class="catebox">
+        <div onclick="category(automotive)" class="catebox">
             <div class="catech">
                 <i id="ic" class="fa-solid fa-camera"></i>
                 <p>Camera</p>
             </div>
         </div>
-        <div class="catebox">
+        <div onclick="category(headphone)" class="catebox">
             <div class="catech">
                 <i id="ic" class="fa-solid fa-headphones"></i>
                 <p>Headphone</p>
             </div>
         </div>
-        <div class="catebox">
+        <div onclick="category(gaming)" class="catebox">
             <div class="catech">
                 <i id="ic" class="fa-solid fa-gamepad"></i>
                 <p>Gaming</p>
@@ -134,8 +191,7 @@
           </div>
           <p id="flash">Best Selling Products</p>
         </div>
-        <div class="swiper mySwiper">
-          <div class="swiper-wrapper"></div>
+        <div class="swiper">
         </div>
         <div class="buttons">
         </div>
@@ -149,8 +205,7 @@
           </div>
           <p id="flash">Explore Our Products</p>
         </div>
-        <div class="swiper mySwiper">
-          <div class="swiper-wrapper"></div>
+        <div class="swiper">
         </div>
         <div class="buttons">
           <button id="viewallonly" onclick="viewall()">View All products</button>
@@ -170,11 +225,12 @@
         </div>
         <div id="delivery">
             <img src="./images/Frame 702.png" alt="">        </div>
-    <script src="products.js"></script>
-    <script src="app.js"></script>
+            
+            <script src="app.js"></script>
+  </div>
   </body>
   <footer>
-    <div class="footer">
+    <div class="footer">  
         <img src="./images/Frame 717.png" alt="">
         <img src="./images/Frame 713.png">
         <div class="Account2">
@@ -182,7 +238,7 @@
             <div class="quicks">
             <p id="Account"> My Account</p>
             <a class="Account">Login/Register</a>
-            <a class="Account">Cart</a>
+            <a class="+">Cart</a>
             <a class="Account">Wishlist</a>
             <a class="Account">Shop</a>
         </div>
@@ -200,3 +256,6 @@
     </div>
   </footer>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+

@@ -17,57 +17,47 @@ const fetchData = () => {
 fetchData();
 
 const displayData = (data) => {
-  let container = document.querySelectorAll(".swiper");
-  container.forEach((el, x) => {
-    for (let y = 1; y <= data.length; y++) {
-      if (x == 1 || x == 2 || x == 0) {
-        y = y + 4;
+  let container = document.querySelector(".swipers");
+    for (let y = 1; y < data.length; y++) {
+      arr.push(data[y]["id"]);
+      if(y==75){
+        break;
       }
 
-      let istrue = 0;
-      for (i in arr) {
-        if (arr[i] == data[y]["id"]) {
-          istrue = 1;
-          break;
-        }
-      }
-      if (istrue == 1) {
-        continue;
-      }
-      arr.push(data[y]["id"]);
       let fcontainer = document.createElement("div");
       fcontainer.className = "fcontainer";
       let imgcontainer = document.createElement("div");
       imgcontainer.className = "imgcontainer";
       imgcontainer.style.backgroundImage = "url(" + data[y]["image"] + ")";
       imgcontainer.style.backgroundSize = "cover";
-      let ndiv = document.createElement("div");
-      let dsc = document.createElement("button");
-      let discount = getRandomInt(50);
-      dsc.innerHTML = "-" + discount + "%";
-      dsc.className = "dsc";
-      let wish = document.createElement("div");
-      let wishicon = document.createElement("i");
-      ndiv.append(dsc, wish);
-      wishicon.className = "fa-regular fa-heart";
-      wishicon.style.fontSize = "20px";
-      wishicon.style.margin = "22%";
+      let ndiv=document.createElement("div")
+      let dsc=document.createElement("button")
+      let discount=getRandomInt(50)
+      dsc.innerHTML="-"+discount+"%"
+      dsc.className="dsc"
+      let wish=document.createElement("div")
+      let wishicon=document.createElement("i")
+      ndiv.append(dsc,wish)
+      wishicon.className="fa-regular fa-heart"
+      wishicon.style.fontSize="20px"
+      wishicon.style.margin="22%"
       wishicon.className = "fa-solid fa-heart";
       wishicon.style.color = "#DB4444";
-      wish.addEventListener("click", () => {
-        wishicon.className = "fa-solid fa-heart";
-        wishicon.style.color = "#DB4444";
-        let item = data[y - 1]["id"];
-        atw(y,data,"wishdata")
-      });
-      wish.append(wishicon);
-      wish.style.backgroundColor = "white";
-      wish.style.borderRadius = "100%";
-      wish.style.height = "34px";
-      wish.style.width = "34px";
-      ndiv.style.display = "flex";
-      ndiv.style.gap = "160px";
-      wish.style.marginTop = "6px";
+      wish.addEventListener("click",()=>{
+          wishicon.className = "fa-solid fa-heart";
+          wishicon.style.color = "#DB4444";
+          let item = data[y - 1]["id"];
+          atw(y,data,"wishdata")
+    
+      })
+      wish.append(wishicon)
+      wish.style.backgroundColor="white"
+      wish.style.borderRadius="100%"
+      wish.style.height="34px"
+      wish.style.width="34px"
+      ndiv.style.display="flex"
+      ndiv.style.gap="160px"
+      wish.style.marginTop="6px"
       fcontainer.addEventListener("mouseenter", () => {
         let add = document.createElement("button");
         add.className = "add";
@@ -83,11 +73,10 @@ const displayData = (data) => {
         add.style.marginTop = "180px";
         fcontainer.addEventListener("mouseenter", atc(add, y,data,"cartdata"));
       });
-      fcontainer.addEventListener("mouseleave", (evt) => {
-        add2 = document.querySelector(".add");
-        add2.remove();
-      });
-
+      fcontainer.addEventListener('mouseleave',(evt) => {
+        add2=document.querySelector(".add")
+        add2.remove()
+      })
       let cardsdata = document.createElement("div");
       let name = document.createElement("p");
       name.innerHTML = data[y]["title"];
@@ -118,8 +107,6 @@ const displayData = (data) => {
         imgcontainer.style.height = "250px";
         imgcontainer.style.width = "270px";
         imgcontainer.style.backgroundColor = "#F5F5F5";
-        container[x].style.display = "flex";
-        container[x].style.gap = "80px";
         imgcontainer.style.borderRadius = "4px";
         price.style.color = "#DB4444";
         price.style.fontSize = "16px";
@@ -134,97 +121,91 @@ const displayData = (data) => {
       {
         fcontainer.append(imgcontainer, cardsdata);
         cardsdata.append(name, price, rdiv);
-        imgcontainer.append(ndiv);
-        container[x].append(fcontainer);
-      }
-      if (y % 4 == 0) {
-        break;
+        imgcontainer.append(ndiv)
+        container.append(fcontainer);
       }
     }
-  });
-};
+  }
 
+  function atc(add, y,maindata,cartdata) {
+    let t=0
+    let cartdat=JSON.parse(localStorage.getItem(cartdata))
+    add.addEventListener("click", () => {
+      for(i in cartdat){
+        if(cartdat[i]==y){
+          console.log("yes")
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Already added to cart!",
+          });
+          t=1
+          break;
+        }
+      }
+      if(t==0){
+        
+       if(cartdat==null){
+        cartdat=[]
+        let item = maindata[y]["id"];
+        cartdat.push(item)
+      }
+      else{ 
+        let item = maindata[y - 1]["id"];
+        cartdat.push(item)
+      }
+      localStorage.setItem(cartdata, JSON.stringify(cartdat));
+        
+      
+      
+      Swal.fire({
+        title: "Done!",
+        text: "Item added to cart",
+        icon: "success",
+      });
+    }
+    });
+  }
 
-// add=document.querySelectorAll(".add")
-// add.addEventListener("click",atc())
-function atc(add, y,maindata,cartdata) {
-  let t=0
-  let cartdat=JSON.parse(localStorage.getItem(cartdata))
-  add.addEventListener("click", () => {
+  function viewall() {
+    location.href = "allproducts.html";
+  }
+  
+
+  function atw(y,maindata,cartdata){
+    let t=0
+    let cartdat=JSON.parse(localStorage.getItem(cartdata))
     for(i in cartdat){
       if(cartdat[i]==y){
         console.log("yes")
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Already added to cart!",
+          text: "Already added to wishlist!",
         });
         t=1
         break;
       }
     }
     if(t==0){
+      if(cartdat==null){
+        cartdat=[]
+        let item = maindata[y - 1]["id"];
+        cartdat.push(item)
+      }
+      else{ 
+        let item = maindata[y - 1]["id"];
+        cartdat.push(item)
+      }
+      localStorage.setItem(cartdata, JSON.stringify(cartdat));
+        
       
-     if(cartdat==null){
-      cartdat=[]
-      let item = maindata[y - 1]["id"];
-      cartdat.push(item)
-    }
-    else{ 
-      let item = maindata[y - 1]["id"];
-      cartdat.push(item)
-    }
-    localStorage.setItem(cartdata, JSON.stringify(cartdat));
       
-    
-    
-    Swal.fire({
-      title: "Done!",
-      text: "Item added to cart",
-      icon: "success",
-    });
-  }
-  });
-}
-
-function viewall() {
-  location.href = "allproducts.html";
-}
-
-function atw(y,maindata,cartdata){
-  let t=0
-  let cartdat=JSON.parse(localStorage.getItem(cartdata))
-  for(i in cartdat){
-    if(cartdat[i]==y){
-      console.log("yes")
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Already added to wishlist!",
-      });
-      t=1
-      break;
+        title: "Done!",
+        text: "Item added to wishlist",
+        icon: "success",
+      })
     }
+  
   }
-  if(t==0){
-    if(cartdat==null){
-      cartdat=[]
-      let item = maindata[y - 1]["id"];
-      cartdat.push(item)
-    }
-    else{ 
-      let item = maindata[y - 1]["id"];
-      cartdat.push(item)
-    }
-    localStorage.setItem(cartdata, JSON.stringify(cartdat));
-      
-    
-    
-    Swal.fire({
-      title: "Done!",
-      text: "Item added to wishlist",
-      icon: "success",
-    })
-  }
-
-}

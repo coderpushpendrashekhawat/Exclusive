@@ -5,13 +5,21 @@
     box-sizing: border-box;
     text-decoration: none;
 }
-a{
+h4{
     color: black;
 }
-body {
+h1{
+    color: black;
+}
+body{
     overflow-x: hidden;
 }
-
+.categories{
+    color: black;
+}
+.homepage{
+    height: 5400px;
+}
 .summersale{
     width: 100vw;
     display: flex;
@@ -81,23 +89,23 @@ body {
     gap: 35px;
     font-size: x-large;
 }
-#user:hover{
-    color: #DB4444;
-}
+
 #likei{
     height: 32px;
     width: 32px;
     font-size: larger;
 }
+#likei:hover{
+    transform: scale(1.1);
+}
+#carti:hover{
+    transform: scale(1.1);
+}
 #carti{
     height: 32px;
     width: 32px;
     font-size: larger;
-}
-#user{
-    height: 32px;
-    width: 32px;
-    font-size: larger;
+    color: black;
 }
 .line2{
     display: flex;
@@ -284,7 +292,7 @@ body {
 
 }
 #viewallonly{
-    margin-top: 300px;
+    margin-top: 50px;
     margin-left: 37%;
     height: 56px;
     font-size: 16px;
@@ -421,4 +429,92 @@ gap: 87px;
     gap: 40px;
 
 }
+.navigationbar{
+    position: sticky;
+    top: 0;
+    background-color:white
+}
 
+.swiper-wrappers {
+    display: grid;
+    column-gap: 100px;
+    row-gap: 100px;
+    grid-template-columns: auto auto auto auto;
+}
+.fcontainer{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 350px;
+    width: 270px;
+}
+.fcontainer:hover{
+    transform: scale(1.1);
+    transition-duration: 500ms;
+}
+.swiper{
+    margin-top: 40px;
+    height: 350px;
+    
+}
+.dsc{
+    width: 55px;
+    height: 26px;
+    margin-top: 12px;
+    margin-left: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #DB4444;
+    color: white;
+
+
+}
+.swipers{
+    display: grid;
+    column-gap: 80px;
+    row-gap: 80px;
+    grid-template-columns: auto auto auto auto;
+    margin: 7%;
+}
+.newdiv{
+    display: flex;
+    gap: 200px;
+}
+.timer{
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 50px;
+}
+#semi{
+    color: #DB4444;
+    font-size: 32px;
+    margin-top: 12px;
+}
+.time{
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: -4px;
+}
+.navcon:hover{
+    transform: scale(1.2);
+    transition-duration: 300ms;
+}
+.ourstory{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 150px;
+}
+#original{
+    height: 336px;
+}
+.our{
+    margin-top: 200px;
+    margin-left: 250px;
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
+    justify-items: center;
+}
