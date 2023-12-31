@@ -116,6 +116,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 16px;
+    color: black;
 }
 #p1{
     width: 892px;
@@ -194,27 +195,22 @@ body{
     gap: 31.5%;
     width: 1500px;
 }
-#prev{
-    height: 56px;
-    width: 100px;
-    background-color: #DB4444;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-}
-#next{
-    height: 56px;
-    width: 100px;
-    background-color: #DB4444;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
+button:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    transition-duration: 300ms;
 }
 #viewall{
+    height: 56px;
+    font-size: 16px;
+    width: 234px;
+    background-color: #DB4444;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+}
+#viewall:hover{
     height: 56px;
     font-size: 16px;
     width: 234px;
@@ -517,4 +513,31 @@ gap: 87px;
     flex-direction: column;
     gap: 150px;
     justify-items: center;
+}
+.sendmsg{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: grid;
+    grid-template-columns: 235px 235px 235px;
+    grid-column-gap: 16px ;
+    grid-template-rows: 50px;
+    border: none;
+    background-color: white;
+    height: 457px;
+    width: 800px;
+    justify-content: center;
+    padding: 40px;
+}
+.yourmsg{
+    width: 737px;
+    height: 250px;
+    border: none;
+    background-color: #F5F5F5;
+    padding: 10px;
+    margin-top: 32px;
+}
+.msg{
+    border: none;
+    background-color: #F5F5F5;
+    padding: 10px;
+    text-align: start;
 }
