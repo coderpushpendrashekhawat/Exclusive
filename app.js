@@ -1,4 +1,5 @@
 let arr = [];
+let cartData = JSON.parse(localStorage.getItem("cartData")) || [];
 function getRandomInt(max) {
   i = Math.floor(Math.random() * max);
   if (i > 3) {
@@ -7,7 +8,6 @@ function getRandomInt(max) {
     return 3;
   }
 }
-
 const fetchData = () => {
   fetch("https://buyby-backend.onrender.com/All-Products")
     .then((res) => res.json())
@@ -54,11 +54,12 @@ const displayData = (data) => {
       wishicon.style.margin = "22%";
       wishicon.className = "fa-solid fa-heart";
       wishicon.style.color = "#DB4444";
-      wish.addEventListener("click", () => {
+      wish.addEventListener("click", (evt) => {
+        evt.stopPropagation;
         wishicon.className = "fa-solid fa-heart";
         wishicon.style.color = "#DB4444";
         let item = data[y - 1]["id"];
-        atw(y,data,"wishdata")
+        atw(y, data, "wishdata");
       });
       wish.append(wishicon);
       wish.style.backgroundColor = "white";
@@ -68,7 +69,7 @@ const displayData = (data) => {
       ndiv.style.display = "flex";
       ndiv.style.gap = "160px";
       wish.style.marginTop = "6px";
-      fcontainer.addEventListener("mouseenter", () => {
+      fcontainer.addEventListener("mouseenter", (evt) => {
         let add = document.createElement("button");
         add.className = "add";
         add.innerText = "Add to cart";
@@ -81,7 +82,27 @@ const displayData = (data) => {
         add.style.fontWeight = "500";
         add.style.border = "none";
         add.style.marginTop = "180px";
-        fcontainer.addEventListener("mouseenter", atc(add, y,data,"cartdata"));
+        add.addEventListener("click", (e) => {
+          e.stopPropagation();
+          cartData.forEach((elem) => {
+            if (data[y].id === elem.id) {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Already added to cart!",
+              });
+            } else {
+              cartData = [...cartData, data[y]];
+              localStorage.setItem("cartData", JSON.stringify(cartData));
+              Swal.fire({
+                title: "Done!",
+                text: "Item added to cart",
+                icon: "success",
+              });
+            }
+          });
+        });
+        // fcontainer.addEventListener("mouseenter", atc(y, data, "cartdata"));
       });
       fcontainer.addEventListener("mouseleave", (evt) => {
         add2 = document.querySelector(".add");
@@ -97,6 +118,16 @@ const displayData = (data) => {
       let ratingct = document.createElement("p");
       ratingct.innerHTML = "(" + getRandomInt(100) + ")";
       let rdiv = document.createElement("div");
+      fcontainer.addEventListener("click", () => {
+        location.href = "singleproduct.html";
+        localStorage.setItem("sid", data[y]["id"]);
+        localStorage.setItem("simage", data[y]["image"]);
+        localStorage.setItem("sprice", data[y]["price"]);
+        localStorage.setItem("sname", data[y]["title"]);
+        localStorage.setItem("srating", rating);
+        localStorage.setItem("sratingc", ratingct.innerHTML);
+        localStorage.setItem("sdesc", data[y]["description"]);
+      });
 
       for (let i = 1; i <= rating; i++) {
         let main3ch = document.createElement("i");
@@ -144,87 +175,68 @@ const displayData = (data) => {
   });
 };
 
-
 // add=document.querySelectorAll(".add")
 // add.addEventListener("click",atc())
-function atc(add, y,maindata,cartdata) {
-  let t=0
-  let cartdat=JSON.parse(localStorage.getItem(cartdata))
-  add.addEventListener("click", () => {
-    for(i in cartdat){
-      if(cartdat[i]==y){
-        console.log("yes")
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Already added to cart!",
-        });
-        t=1
-        break;
-      }
-    }
-    if(t==0){
-      
-     if(cartdat==null){
-      cartdat=[]
-      let item = maindata[y - 1]["id"];
-      cartdat.push(item)
-    }
-    else{ 
-      let item = maindata[y - 1]["id"];
-      cartdat.push(item)
-    }
-    localStorage.setItem(cartdata, JSON.stringify(cartdat));
-      
-    
-    
-    Swal.fire({
-      title: "Done!",
-      text: "Item added to cart",
-      icon: "success",
-    });
-  }
-  });
-}
+// document.querySelector(".add").addEventListener("click", (e) => {
+//   console.log("....e", e);
+
+// for (i in cartdat) {
+//   if (cartdat[i] == y) {
+//     console.log("yes");
+//
+//     t = 1;
+//     break;
+//   }
+// }
+// if (t == 0) {
+//   if (cartdat == null) {
+//     cartdat = [];
+//     let item = maindata[y - 1]["id"];
+//     cartdat.push(item);
+//   } else {
+//     let item = maindata[y - 1]["id"];
+//     cartdat.push(item);
+//   }
+//   localStorage.setItem(cartdata, JSON.stringify(cartdat));
+
+//
+// }
+// });
 
 function viewall() {
-  location.href = "allproducts.html";
+  // location.href = "allproducts.html";
 }
 
-function atw(y,maindata,cartdata){
-  let t=0
-  let cartdat=JSON.parse(localStorage.getItem(cartdata))
-  for(i in cartdat){
-    if(cartdat[i]==y){
-      console.log("yes")
+function atw(y, maindata, cartdata) {
+  let t = 0;
+  let cartdat = JSON.parse(localStorage.getItem(cartdata));
+  for (i in cartdat) {
+    if (cartdat[i] == y) {
+      console.log("yes");
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Already added to wishlist!",
       });
-      t=1
+      t = 1;
       break;
     }
   }
-  if(t==0){
-    if(cartdat==null){
-      cartdat=[]
+  if (t == 0) {
+    if (cartdat == null) {
+      cartdat = [];
       let item = maindata[y - 1]["id"];
-      cartdat.push(item)
-    }
-    else{ 
+      cartdat.push(item);
+    } else {
       let item = maindata[y - 1]["id"];
-      cartdat.push(item)
+      cartdat.push(item);
     }
     localStorage.setItem(cartdata, JSON.stringify(cartdat));
-      
-    
-    
+
     Swal.fire({
       title: "Done!",
       text: "Item added to wishlist",
       icon: "success",
-    })
+    });
   }
-
 }
